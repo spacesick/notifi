@@ -13,7 +13,7 @@ class Listing(models.Model):
         max_length=512,
         help_text='The name of this listing',
     )
-    url = models.CharField(
+    crawl_url = models.CharField(
         max_length=512,
         help_text='The website URL you want to crawl',
     )
@@ -34,7 +34,7 @@ class Listing(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        # editable=False,
+        editable=False,
         help_text='The scheduler for this listing',
     )
     user = models.ForeignKey(
@@ -42,10 +42,14 @@ class Listing(models.Model):
         on_delete=models.CASCADE,
         help_text='The user that created this listing',
     )
+    content = models.TextField(
+        null=True,
+        blank=True,
+        help_text='The latest website content that has been checked',
+    )
     content_hash = models.IntegerField(
         null=True,
         blank=True,
-        # editable=False,
         help_text='The hash of the latest website content that has been checked',
     )
     date_created = models.DateTimeField(
@@ -60,9 +64,13 @@ class Listing(models.Model):
     def create_scheduler(self):
         self.scheduler = PeriodicTask.objects.create(
             name=self.name,
-            task='test_task',
+            task='crawl',
             interval=self.interval_schedule,
-            args=json.dumps([self.id]),
+            args=json.dumps([
+                self.id,
+                self.crawl_url,
+                self.selector,
+            ]),
             start_time=timezone.now()
         )
         self.save()

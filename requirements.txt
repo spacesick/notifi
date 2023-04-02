@@ -8,3 +8,5 @@ celery
 django-celery-beat
 mmh3
 Redis
+lxml
+beautifulsoup4

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-d^*ugt-lp@xu!1ql%09oa#r*aw53fagpa$1z8)fdawi-w8t3kq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['34.123.65.241']
 
 
 # Application definition
@@ -73,11 +73,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'notifi.wsgi.application'
 
+
+# Celery settings
+
 CELERY_BROKER_URL = 'redis://localhost:6379'
-
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+
+# Django logging settings
 
 LOGGING = {
     "version": 1,
@@ -145,3 +149,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email settings
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'webobsrv@gmail.com'
+EMAIL_HOST_PASSWORD = 'vjjyjdkqiniguqlt'
+
+DEFAULT_FROM_EMAIL = 'webobsrv@gmail.com'
