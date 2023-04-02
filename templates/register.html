@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div>
+    <div class="grid m-auto max-w-max">
+      <div>
+        <div class="pt-4 px-4">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Register</h3>
+        </div>
+      </div>
+      <div class="mt-5">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="shadow">
+            <div class="px-4 py-5 bg-white space-y-6">
+
+              <div class="grid grid-cols-3 gap-6">
+                <div class="col-span-3">
+                  <label class="block text-sm font-medium text-gray-700">
+                    Username
+                  </label>
+                  <div class="mt-1 flex shadow-sm">
+                    {{ form.username }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-6">
+                <div class="col-span-3">
+                  <label class="block text-sm font-medium text-gray-700">
+                    Password
+                  </label>
+                  <div class="mt-1 flex shadow-sm">
+                    {{ form.password1 }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-6">
+                <div class="col-span-3">
+                  <label class="block text-sm font-medium text-gray-700">
+                    Re-enter password
+                  </label>
+                  <div class="mt-1 flex shadow-sm">
+                    {{ form.password2 }}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right">
+              <input type="submit"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                value="Save">
+              </input>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="block">
+        <div class="py-5">
+          <div class="border-t border-gray-200"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

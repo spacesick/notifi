@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>View profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/b99b726463.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <nav class="bg-gray-800">
+    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+      <form action="/logout/" method="post">
+        {% csrf_token %}
+        <input type="submit"
+        class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+        value="Logout">
+        </input>
+      </form>
+
+      <a class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+      href="/listings/create/">
+        Create
+      </a>
+
+      <!-- <input type="submit"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                value="Save">
+              </input> -->
+      
+    </div>
+  </nav>
+
+  <div>
+    <div class="grid m-auto max-w-max">
+
+      <div class="mt-5">
+        <div class="shadow">
+          <div class="px-4 py-5 bg-white space-y-6">
+
+            <div class="divide-y divide-gray-200">
+              {% if object_list %}
+              {% for listing in object_list %}
+              <div class="grid grid-cols-3 gap-6 py-2">
+
+                <div class="col-span-2">
+                  <p class="block text-lg font-medium text-gray-700">
+                    {{ listing.name }}
+                  </p>
+                  <p class="mt-1 block text-sm font-normal text-gray-700">
+                    {{ listing.crawl_url }}
+                  </p>
+                </div>
+
+                <div class="px-4 py-3 text-right">
+                  <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-green-600 hover:text-green-700 border-green-600 bg-white-600 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    href="{{ listing.pk }}/delete">
+                    Delete
+                  </a>
+                </div>
+
+              </div>
+              {% endfor %}
+              {% else %}
+              <p class="block text-lg font-medium text-gray-700">
+                You don't have any listings yet
+              </p>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
