@@ -10,3 +10,4 @@ mmh3
 Redis
 lxml
 beautifulsoup4
+django-environ

@@ -13,20 +13,25 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d^*ugt-lp@xu!1ql%09oa#r*aw53fagpa$1z8)fdawi-w8t3kq'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['34.123.65.241']
+ALLOWED_HOSTS = ['34.123.65.241', 'localhost']
 
 
 # Application definition
@@ -158,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'webobsrv@gmail.com'
-EMAIL_HOST_PASSWORD = 'vjjyjdkqiniguqlt'
+EMAIL_HOST_USER = env('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 
-DEFAULT_FROM_EMAIL = 'webobsrv@gmail.com'
+DEFAULT_FROM_EMAIL = env('EMAIL_USERNAME')
