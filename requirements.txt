@@ -1,0 +1,10 @@
+Django
+djangorestframework
+django-filter
+markdown
+Scrapy
+apprise
+celery
+django-celery-beat
+mmh3
+Redis
