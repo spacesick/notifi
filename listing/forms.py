@@ -8,7 +8,7 @@ from .period import Period
 class ListingForm(forms.ModelForm):
     
     class Meta:
-        text_input_style = 'focus:ring-indigo-500 focus:border-indigo-500 flex-1 block rounded-md w-full border-gray-300'
+        text_input_style = 'focus:ring-indigo-500 focus:border-indigo-500 flex-1 block rounded-md w-full border-gray-300 px-2 py-1'
         model = Listing
         fields = [
             # 'url',
